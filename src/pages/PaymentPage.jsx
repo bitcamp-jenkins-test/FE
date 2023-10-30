@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import ROUTER from '../constants/router';
 import Axios from '../utils/api/axios';
 import QUERY from "../constants/query";
-
 import axios from 'axios';
 
 const axiosForLoginUser = new Axios(QUERY.AXIOS_PATH.SEVER);
@@ -30,8 +29,8 @@ const Payment = () => {
       return;
     }
     console.log("결제서비스 하기전에, 해당 유저가 로그인 했는지 확인하는 과정");
-    const res = [];
-    const response = axiosForLoginUser.get(`/api/profiles`)
+    console.log("결제서비스 하기전에, 해당 유저가 로그인 했는지 확인하는 과정1");
+    axiosForLoginUser.get(`/api/profiles`)
       .then((response) => {
         console.log(response.data.result);
       })
@@ -41,6 +40,7 @@ const Payment = () => {
         }
         console.error('Error fetching old messages:', error);
       });
+    console.log("결제서비스 하기전에, 해당 유저가 로그인 했는지 확인하는 과정2");
     const { IMP } = window;
     IMP.init(`${process.env.REACT_APP_IMP}`);
 
@@ -48,13 +48,8 @@ const Payment = () => {
       pg: 'kakaopay.TC0ONETIME',
       pay_method: 'card',
       merchant_uid: new Date().getTime(),
-      name: '캐롯선더충전',
+      name: '캐롯썬더충전',
       amount: chargePoint,
-      buyer_email: 'test@test.com',
-      buyer_name: '코드쿡',
-      buyer_tel: '010-1234-5678',
-      buyer_addr: '서울특별시',
-      buyer_postcode: '123-456',
     }, async (rsp) => {
       try {
         // console.log(rsp.paid_amount);
@@ -68,7 +63,7 @@ const Payment = () => {
           navigator(ROUTER.PATH.MYPAGE);
           return;
         }
-        const { data } = await axios.post('http://localhost:8888/api/payments'
+        const { data } = await axios.post('http://carrothunder.store:8888/api/payments'
           , { userId, chargePoint });
         console.log(data);
         Storage.setPoint(data);

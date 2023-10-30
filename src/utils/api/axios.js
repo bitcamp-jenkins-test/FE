@@ -59,6 +59,7 @@ export default class Axios {
         Authorization: `Bearer ${cookie ? cookie : ''}`,
       },
     };
+    console.log("여기타는지 확인좀 할게요");
     return this.instance.get(path, option);
   }
 

@@ -76,6 +76,19 @@ const Storage = {
     return window.localStorage.getItem('roomId');
   },
 
+  setLocationKey(locationKey) {
+    removeLocalStorage('locationKey');
+    setlocalStorage('locationKey', locationKey);
+  },
+
+  removeLocationKey() {
+    removeLocalStorage('locationKey');
+  },
+
+  getLocationKey() {
+    return window.localStorage.getItem('locationKey');
+  },
+
 };
 
 function setlocalStorage(key, value) {

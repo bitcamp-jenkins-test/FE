@@ -5,9 +5,9 @@ import { Link, useLocation } from 'react-router-dom';
 import QUERY from '../constants/query';
 import ROUTER from '../constants/router';
 import { useNavigate } from 'react-router-dom';
+import Storage from '../utils/localStorage';
 
 //const axios = new Axios(QUERY.AXIOS_PATH.SEVER);
-
 
 
 export default function MainPage() {
@@ -29,7 +29,7 @@ export default function MainPage() {
   async function fetchPosts(page, isStop) {
     if (!isStop) {
       try {
-        //console.log("서버 요청하기전 데이터값  " + pageNo + "   " + selectedCategory)
+        console.log("서버 요청하기전 데이터값  " + pageNo + "   " + selectedCategory)
         const response = await axios.get(`${QUERY.AXIOS_PATH.SEVER}${QUERY.AXIOS_PATH.POSTLIST}?pageNo=${page}&category=${selectedCategory == null ? "TOTAL" : selectedCategory}&word=${word ? word : ""}`);
 
         posts.concat(response.data.result);
@@ -108,10 +108,12 @@ export default function MainPage() {
 
 
   useEffect(() => {
-
-    if (location.state) {
-      console.log(wordContainsCategory(location.state.word))
-      console.log(categoryMap)
+    //console.log(location.key);
+    let key = Storage.getLocationKey();
+    if (location.state && key != location.key) {
+      Storage.setLocationKey(location.key);
+      //console.log(wordContainsCategory(location.state.word))
+      //console.log(categoryMap)
       if (wordContainsCategory(location.state.word)) {
         setWord(null);
         setSelectedCategory(categoryMap.get(location.state.word));

@@ -15,7 +15,7 @@ const MyChatRooms = ({onRoomSelect}) => {
   const [chatRooms, setChatRooms] = useState([]);
   const [images, setImages] = useState({});
   const userId = Storage.getUserId();
-  const chatRoomsContainerRef = useRef(null)
+  const chatRoomsContainerRef = useRef(null);
   const [selectedRoomId, setSelectedRoomId] = useState(null);
 
   const fetchChatRooms = async () => {
@@ -73,7 +73,7 @@ const MyChatRooms = ({onRoomSelect}) => {
   };
 
   useEffect(() => {
-    const socket = new SockJS('http://localhost:8888/api/websocket');
+    const socket = new SockJS('http://carrothunder.store:8888/api/websocket');
     const stompClient = Stomp.over(socket);
 
     stompClient.connect({}, () => {
