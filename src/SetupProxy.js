@@ -4,11 +4,11 @@ module.exports = app => {
     createProxyMiddleware(
       ['/api', '/socket.io'],
       {
-        target: 'http://carrothunder.store:80',
+        target: 'http://223.130.132.158:80',
         changeOrigin: true,
         ws: true,
         router: {
-          '/socket.io': 'ws://carrothunder.store:80'
+          '/socket.io': 'ws://223.130.132.158:80'
         }
       }
     )

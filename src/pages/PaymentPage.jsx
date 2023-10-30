@@ -63,7 +63,7 @@ const Payment = () => {
           navigator(ROUTER.PATH.MYPAGE);
           return;
         }
-        const { data } = await axios.post('http://carrothunder.store:8888/api/payments'
+        const { data } = await axios.post('http://223.130.132.158:8888/api/payments'
           , { userId, chargePoint });
         console.log(data);
         Storage.setPoint(data);

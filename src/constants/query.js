@@ -4,8 +4,8 @@ const COOKIE = {
 };
 
 const AXIOS_PATH = {
-  LOCAL: 'http://carrothunder.store:8888',
-  SEVER: 'http://carrothunder.store:8888',
+  LOCAL: 'http://223.130.132.158:8888',
+  SEVER: 'http://223.130.132.158:8888',
   KAKAOSERVER: 'https://kauth.kakao.com',
   LOGIN: '/api/users/login',
   SIGNUP: '/api/users/signup',
